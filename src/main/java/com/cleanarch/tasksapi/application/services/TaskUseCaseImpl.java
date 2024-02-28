@@ -1,6 +1,5 @@
 package com.cleanarch.tasksapi.application.services;
 
-
 import com.cleanarch.tasksapi.application.gateway.TaskGateway;
 import com.cleanarch.tasksapi.core.domain.Task;
 import com.cleanarch.tasksapi.core.exceptions.NoTasksFound;
@@ -32,10 +31,10 @@ public class TaskUseCaseImpl implements TaskUseCase {
     }
 
     @Override
-    public Task getTaskByTitle(String title) throws TaskNotFound, NoTasksFound {
+    public Task getTaskByTitle(String title) throws TaskNotFound{
         List<Task> taskList = taskGateway.getAllTasks();
         if (taskList.isEmpty())
-            throw new NoTasksFound();
+            throw new TaskNotFound();
 
         for(Task task : taskList){
             if (task.getTitle().equals(title))
